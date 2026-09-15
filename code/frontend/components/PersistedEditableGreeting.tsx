@@ -32,7 +32,7 @@ export function PersistedEditableGreeting({ initialGreeting }: PersistedEditable
 
   return (
     <main className={styles.main}>
-      <section className={styles.section} aria-labelledby="greeting-heading">
+      <section className={`${styles.section} greeting-section`} aria-labelledby="greeting-heading">
         <h1 id="greeting-heading" className={styles.heading}>{greeting}</h1>
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <label className="visually-hidden" htmlFor="greeting-input">Greeting</label>
