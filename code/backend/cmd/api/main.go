@@ -128,10 +128,6 @@ func putGreeting(w http.ResponseWriter, r *http.Request, pool *pgxpool.Pool) {
 }
 
 func writeStoreError(w http.ResponseWriter, err error) {
-	if errors.Is(err, pgx.ErrNoRows) {
-		writeError(w, http.StatusInternalServerError, "INTERNAL", "Internal server error.")
-		return
-	}
 	writeError(w, http.StatusInternalServerError, "INTERNAL", "Internal server error.")
 }
 
