@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { readMockGreeting, saveMockGreeting } from "@/lib/mock/persisted-editable-greeting";
 import styles from "./PersistedEditableGreeting.module.css";
 
 export type PersistedEditableGreetingProps = {
