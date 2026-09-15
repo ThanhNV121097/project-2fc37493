@@ -1,6 +1,8 @@
 import { PersistedEditableGreeting } from "@/components/PersistedEditableGreeting";
-import { initialGreeting } from "@/lib/mock/persisted-editable-greeting";
+import { readGreeting } from "@/lib/persisted-editable-greeting";
 
-export default function Page() {
-  return <PersistedEditableGreeting initialGreeting={initialGreeting.text} />;
+export default async function Page() {
+  const greeting = await readGreeting(process.env.API_ORIGIN ?? "http://backend:8080");
+
+  return <PersistedEditableGreeting initialGreeting={greeting.text} />;
 }
