@@ -2,9 +2,5 @@ import { PersistedEditableGreeting } from "@/components/PersistedEditableGreetin
 import { initialGreeting } from "@/lib/mock/persisted-editable-greeting";
 
 export default function Page() {
-  return (
-    <main style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: "var(--space-24)" }}>
-      <PersistedEditableGreeting initialGreeting={initialGreeting.text} />
-    </main>
-  );
+  return <PersistedEditableGreeting initialGreeting={initialGreeting.text} />;
 }
