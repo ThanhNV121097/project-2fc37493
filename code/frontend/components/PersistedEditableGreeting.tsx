@@ -14,6 +14,12 @@ export function PersistedEditableGreeting({ initialGreeting }: PersistedEditable
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    const storedGreeting = readMockGreeting().text;
+    setGreeting(storedGreeting);
+    setInputValue(storedGreeting);
+  }, []);
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextGreeting = inputValue.trim();
