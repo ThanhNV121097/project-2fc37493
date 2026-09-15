@@ -98,12 +98,10 @@ func getGreeting(w http.ResponseWriter, r *http.Request, pool *pgxpool.Pool) {
 }
 
 func putGreeting(w http.ResponseWriter, r *http.Request, pool *pgxpool.Pool) {
-	var request struct {
-		Text string `json:"text"`
-	}
+	var raw map[string]string
 	decoder := json.NewDecoder(http.MaxBytesReader(w, r.Body, 1<<20))
 	decoder.DisallowUnknownFields()
-	if err := decoder.Decode(&request); err != nil {
+	if err := decoder.Decode(&raw); err != nil {
 		writeError(w, http.StatusBadRequest, "MALFORMED_REQUEST", "Request body is malformed.")
 		return
 	}
@@ -111,7 +109,12 @@ func putGreeting(w http.ResponseWriter, r *http.Request, pool *pgxpool.Pool) {
 		writeError(w, http.StatusBadRequest, "MALFORMED_REQUEST", "Request body is malformed.")
 		return
 	}
-	text := strings.TrimSpace(request.Text)
+	text, ok := raw["text"]
+	if !ok || len(raw) != 1 {
+		writeError(w, http.StatusBadRequest, "MALFORMED_REQUEST", "Request body is malformed.")
+		return
+	}
+	text = strings.TrimSpace(text)
 	if text == "" {
 		writeError(w, http.StatusUnprocessableEntity, "VALIDATION_FAILED", "Greeting must not be empty.")
 		return
