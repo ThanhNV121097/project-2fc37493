@@ -1,0 +1,78 @@
+.main {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-24);
+}
+
+.section {
+  width: min(100%, 520px);
+  text-align: center;
+}
+
+.heading {
+  margin: var(--space-0) var(--space-0) var(--space-32);
+  color: var(--color-text);
+  font-size: var(--text-heading);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-12);
+  width: 100%;
+  margin: var(--space-0);
+}
+
+.input {
+  flex: 1;
+  min-width: var(--space-0);
+  border: var(--border-width) solid var(--color-text);
+  border-radius: var(--radius-square);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  padding: var(--space-12) var(--space-14);
+}
+
+.button {
+  border: var(--border-width) solid var(--color-primary-action);
+  border-radius: var(--radius-square);
+  background: var(--color-primary-action);
+  color: var(--color-bg);
+  cursor: pointer;
+  font: inherit;
+  font-weight: var(--font-weight-action);
+  padding: var(--space-12) var(--space-20);
+}
+
+.input:focus-visible,
+.button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.message {
+  min-height: var(--space-24);
+  margin: var(--space-12) var(--space-0) var(--space-0);
+  color: var(--color-text);
+  font-size: var(--text-message);
+  text-align: left;
+}
+
+.message:empty {
+  display: block;
+}
+
+@media (max-width: 520px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
