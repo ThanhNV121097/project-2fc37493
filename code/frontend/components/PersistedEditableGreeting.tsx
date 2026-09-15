@@ -30,8 +30,9 @@ export function PersistedEditableGreeting({ initialGreeting }: PersistedEditable
       return;
     }
 
-    setGreeting(nextGreeting);
-    setInputValue(nextGreeting);
+    const savedGreeting = saveMockGreeting(nextGreeting);
+    setGreeting(savedGreeting.text);
+    setInputValue(savedGreeting.text);
     setMessage("Saved.");
   }
 
