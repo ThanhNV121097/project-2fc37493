@@ -129,6 +129,11 @@ func putGreeting(w http.ResponseWriter, r *http.Request, pool *pgxpool.Pool) {
 }
 
 func writeStoreError(w http.ResponseWriter, err error) {
+	var pgErr *pgconn.ConnectError
+	if errors.As(err, &pgErr) || errors.Is(err, context.Canceled) {
+		writeError(w, http.StatusServiceUnavailable, "UNAVAILABLE", "Service unavailable.")
+		return
+	}
 	writeError(w, http.StatusInternalServerError, "INTERNAL", "Internal server error.")
 }
 
