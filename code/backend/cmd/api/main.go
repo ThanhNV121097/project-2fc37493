@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/ThanhNV121097/project-2fc37493/backend/migrations"
+	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
