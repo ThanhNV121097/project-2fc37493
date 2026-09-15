@@ -19,9 +19,11 @@ All non-2xx JSON responses:
 
 ## Greeting
 
+Mock review: `code/frontend/lib/mock/persisted-editable-greeting.ts` exposes `Greeting` as `{ "text": string }`; its localStorage mechanics are UI-only. Contract retains this sound response shape, so frontend backend swap changes data source only. Empty client validation remains UI behavior; API repeats validation at trust boundary.
+
 ### `GET /v1/greeting`
 
-Returns current singleton greeting.
+No authentication. Returns current singleton greeting.
 
 Success `200`:
 
@@ -33,7 +35,7 @@ Errors: `INTERNAL`, `UNAVAILABLE`.
 
 ### `PUT /v1/greeting`
 
-Replaces greeting. Request must be JSON object with only `text` string. Server trims leading and trailing whitespace before validation and storage.
+No authentication. Replaces greeting. Request must be JSON object with only `text` string. Server trims leading and trailing whitespace before validation and storage. Last successful save wins.
 
 ```json
 {"text":"Hi pipeline"}
@@ -46,5 +48,3 @@ Success `200`:
 ```
 
 Errors: `MALFORMED_REQUEST`, `VALIDATION_FAILED`, `INTERNAL`, `UNAVAILABLE`.
-
-No authentication, pagination, caching, or conflict contract. Last successful save wins.
